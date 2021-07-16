@@ -32,12 +32,12 @@ async def on_message(message):
     if message.author == client.user:
         return
     if message.content.startswith("$earrape"):
-        channel1 = client.get_channel(865462494583980032)
+        channel1 = client.get_channel(750273754067763291)
         await channel1.send("-p https://www.youtube.com/watch?v=FfWoHZFci0g")
         await channel1.send("-loop")
     if message.content.startswith("$inspire"):
         quote = get_quote()
-        channel2 = client.get_channel(865425426465816630)
+        channel2 = client.get_channel(852750656501710870)
         await channel2.send(quote)
     if message.content.startswith("$insult"):
         insult = get_insult()
