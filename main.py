@@ -32,9 +32,24 @@ async def on_message(message):
     if message.author == client.user:
         return
     if message.content.startswith("$earrape"):
-        channel1 = client.get_channel(750273754067763291)
-        await channel1.send("-p https://www.youtube.com/watch?v=FfWoHZFci0g")
-        await channel1.send("-loop")
+        payload1 = {
+            'content': "-p https://www.youtube.com/watch?v=FfWoHZFci0g"
+        }
+        payload2 = {
+            'content': "-loop"
+        }
+        header = {
+            'authorization': os.getenv('AUTH')
+        }
+
+        r = requests.post("https://discord.com/api/v9/channels/750273754067763291/messages", data=payload1,
+                          headers=header)
+        r = requests.post("https://discord.com/api/v9/channels/750273754067763291/messages", data=payload2,
+                          headers=header)
+
+        # channel1 = client.get_channel(750273754067763291)
+        # await channel1.send("-p https://www.youtube.com/watch?v=FfWoHZFci0g")
+        # await channel1.send("-loop")
     if message.content.startswith("$inspire"):
         quote = get_quote()
         channel2 = client.get_channel(852750656501710870)
