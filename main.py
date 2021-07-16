@@ -25,11 +25,13 @@ async def on_message(message):
     if message.author == client.user:
         return
     if message.content.startswith("$earrape"):
-        await message.channel.send("-p https://www.youtube.com/watch?v=FfWoHZFci0g")
-        await message.channel.send("-loop")
+        channel1 = client.get_channel(865462494583980032)
+        await channel1.send("-p https://www.youtube.com/watch?v=FfWoHZFci0g")
+        await channel1.send("-loop")
     if message.content.startswith("$inspire"):
         quote = get_quote()
-        await message.channel.send(quote)
+        channel2 = client.get_channel(865425426465816630)
+        await channel2.send(quote)
 
 
 client.run(os.getenv("TOKEN"))
