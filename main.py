@@ -15,6 +15,13 @@ def get_quote():
     return quote
 
 
+def get_insult():
+    request = requests.get('https://evilinsult.com/generate_insult.php?lang=en&type=json')
+    json_data = request.json()
+    insult = json_data["insult"]
+    return insult
+
+
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
@@ -32,6 +39,9 @@ async def on_message(message):
         quote = get_quote()
         channel2 = client.get_channel(865425426465816630)
         await channel2.send(quote)
+    if message.content.startswith("$insult"):
+        insult = get_insult()
+        await message.channel.send(insult)
 
 
 client.run(os.getenv("TOKEN"))
