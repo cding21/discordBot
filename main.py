@@ -33,9 +33,12 @@ async def on_message(message):
         return
     if message.content.startswith("$earrape"):
         payload1 = {
-            'content': "-p https://www.youtube.com/watch?v=FfWoHZFci0g"
+            'content': "-clear"
         }
         payload2 = {
+            'content': "-p https://www.youtube.com/watch?v=FfWoHZFci0g"
+        }
+        payload3 = {
             'content': "-loop"
         }
         header = {
@@ -45,6 +48,8 @@ async def on_message(message):
         r = requests.post("https://discord.com/api/v9/channels/750273754067763291/messages", data=payload1,
                           headers=header)
         r = requests.post("https://discord.com/api/v9/channels/750273754067763291/messages", data=payload2,
+                          headers=header)
+        r = requests.post("https://discord.com/api/v9/channels/750273754067763291/messages", data=payload3,
                           headers=header)
 
         # channel1 = client.get_channel(750273754067763291)
