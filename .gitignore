@@ -2,6 +2,6 @@
 *.vscode
 .env
 venv
-*.idea
+.idea
 .idea/discordBot.iml
 .idea/discordBot.iml
