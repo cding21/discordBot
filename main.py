@@ -35,7 +35,8 @@ def weeks_until(year, month, day):
 def semester_weeks():
     week_number = 13 - weeks_until(2021, 10, 24)
 
-    return "This week is Week " + str(week_number)
+    return "This week is Week " + str(week_number) + ". Check the assessments page to what due dates are coming up " \
+                                                     "and organise weekly to-do list!! "
 
 
 @client.event
