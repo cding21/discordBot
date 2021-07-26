@@ -58,7 +58,7 @@ async def on_message(message):
             'content': "-p https://www.youtube.com/watch?v=FfWoHZFci0g"
         }
         payload3 = {
-            'content': "-loop"
+            'content': "-loop hi"
         }
         header = {
             'authorization': os.getenv('AUTH')
