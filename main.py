@@ -2,6 +2,7 @@ import os
 import discord
 import requests
 import json
+import datetime
 from dotenv import load_dotenv
 
 client = discord.Client()
@@ -20,6 +21,21 @@ def get_insult():
     json_data = request.json()
     insult = json_data["insult"]
     return insult
+
+
+def weeks_until(year, month, day):
+    start_date = datetime.date.today()
+    end_date = datetime.date(year, month, day)
+
+    weeks = ((end_date - start_date).days // 7)
+
+    return weeks
+
+
+def semester_weeks():
+    week_number = 13 - weeks_until(2021, 10, 24)
+
+    return "This week is Week " + str(week_number)
 
 
 @client.event
@@ -62,6 +78,9 @@ async def on_message(message):
     if message.content.startswith("$insult"):
         insult = get_insult()
         await message.channel.send(insult)
+    if message.content.startswith("$week"):
+        week = semester_weeks()
+        await message.channel.send(week)
 
 
 client.run(os.getenv("TOKEN"))
