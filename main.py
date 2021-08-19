@@ -87,14 +87,14 @@ async def on_message(message):
 async def status_change():
     await client.wait_until_ready()
 
-    statuses = ["Dom being toxic", "Aidan being a diulei", "Ying being sweet", "Marcus' dinner table"]
+    statuses = ["Dom being toxic", "Aidan being a diulei", "Ying being sweet", "Marcus' family"]
 
     while not client.is_closed():
         status = random.choice(statuses)
 
         await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=status))
 
-        await asyncio.sleep(100)
+        await asyncio.sleep(60)
 
 
 client.loop.create_task(status_change())
