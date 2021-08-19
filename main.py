@@ -1,4 +1,6 @@
+import asyncio
 import os
+import random
 import discord
 import requests
 import json
@@ -35,8 +37,8 @@ def weeks_until(year, month, day):
 def semester_weeks():
     week_number = 13 - weeks_until(2021, 10, 23)
     if 12 >= week_number >= 1:
-        return "This week is **Week " + str(week_number) + "**.\nCheck the assessments page to see what due dates are "\
-                                                         "coming up! "
+        return "This week is **Week " + str(week_number) + "**.\nCheck the assessments page to see what due dates are " \
+                                                           "coming up! "
     else:
         return "Aren't you on break? Go enjoy yourself!!"
 
@@ -70,10 +72,6 @@ async def on_message(message):
                           headers=header)
         r = requests.post("https://discord.com/api/v9/channels/750273754067763291/messages", data=payload3,
                           headers=header)
-
-        # channel1 = client.get_channel(750273754067763291)
-        # await channel1.send("-p https://www.youtube.com/watch?v=FfWoHZFci0g")
-        # await channel1.send("-loop")
     if message.content.startswith("$inspire"):
         quote = get_quote()
         channel2 = client.get_channel(852750656501710870)
@@ -86,4 +84,18 @@ async def on_message(message):
         await message.channel.send(week)
 
 
+async def status_change():
+    await client.wait_until_ready()
+
+    statuses = ["Dom being toxic", "Aidan being a diulei", "Ying being sweet", "Marcus' dinner table"]
+
+    while not client.is_closed():
+        status = random.choice(statuses)
+
+        await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=status))
+
+        await asyncio.sleep(100)
+
+
+client.loop.create_task(status_change())
 client.run(os.getenv("TOKEN"))
