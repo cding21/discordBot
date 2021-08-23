@@ -1,6 +1,8 @@
 import asyncio
 import os
 import random
+import time
+
 import discord
 import requests
 import json
@@ -9,6 +11,62 @@ from dotenv import load_dotenv
 
 client = discord.Client()
 load_dotenv()
+
+
+def success():
+    print("Message sent!")
+
+
+def inspire():
+    payload1 = {
+        'content': "G'morning yall!"
+    }
+    payload2 = {
+        'content': "$inspire"
+    }
+    header = {
+        'authorization': os.getenv('AUTH')
+    }
+
+    r = requests.post("https://discord.com/api/v9/channels/137042582722052097/messages", data=payload1,
+                      headers=header)
+    r = requests.post("https://discord.com/api/v9/channels/137042582722052097/messages", data=payload2,
+                      headers=header)
+
+    success()
+
+
+def daylight_savings():
+    payload = {
+        'content': "Don't forget to change your clocks for daylight savings everyone!"
+    }
+    header = {
+        'authorization': os.getenv('AUTH')
+    }
+    r = requests.post("https://discord.com/api/v9/channels/137042582722052097/messages", data=payload,
+                      headers=header)
+    success()
+
+
+def weekly_message():
+    payload = {
+        'content': "$week"
+    }
+    header = {
+        'authorization': os.getenv('AUTH')
+    }
+    r = requests.post("https://discord.com/api/v9/channels/869057677735624744/messages", data=payload,
+                      headers=header)
+    success()
+
+
+def weeks_until(year, month, day):
+    start_date = datetime.date.today()
+    end_date = datetime.date(year, month, day)
+
+    weeks = ((end_date - start_date).days // 7)
+
+    return weeks
 
 
 def get_quote():
@@ -95,6 +153,19 @@ async def status_change():
         await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name=status))
 
         await asyncio.sleep(60)
+
+        today = datetime.date.today()
+        now = time.localtime()
+        time.sleep(1)
+        if now[3] == 0 and now[4] == 0 and now[5] == 0:
+            inspire()
+            if today.strftime("%A") == "Sunday":
+                if 12 >= weeks_until(2021, 10, 23) >= 0:
+                    weekly_message()
+        if now[0] == 2021 and now[1] == 10 and now[2] == 3:
+            daylight_savings()
+        if now[0] == 2022 and now[1] == 4 and now[2] == 3:
+            daylight_savings()
 
 
 client.loop.create_task(status_change())
