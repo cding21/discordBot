@@ -112,7 +112,7 @@ async def on_message(message):
         return
     if message.content.startswith("$earrape"):
         payload1 = {
-            'content': "_clear"
+            'content': "_clearqueue"
         }
         payload2 = {
             'content': "_p https://www.youtube.com/watch?v=FfWoHZFci0g"
