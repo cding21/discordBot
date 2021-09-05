@@ -112,13 +112,13 @@ async def on_message(message):
         return
     if message.content.startswith("$earrape"):
         payload1 = {
-            'content': "-clear"
+            'content': "_clear"
         }
         payload2 = {
-            'content': "-p https://www.youtube.com/watch?v=FfWoHZFci0g"
+            'content': "_p https://www.youtube.com/watch?v=FfWoHZFci0g"
         }
         payload3 = {
-            'content': "-loop"
+            'content': "_loop"
         }
         header = {
             'authorization': os.getenv('AUTH')
