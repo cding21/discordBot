@@ -154,19 +154,6 @@ async def status_change():
 
         await asyncio.sleep(60)
 
-        today = datetime.date.today()
-        now = time.localtime()
-        time.sleep(1)
-        if now[3] == 0 and now[4] == 0 and now[5] == 0:
-            inspire()
-            if today.strftime("%A") == "Sunday":
-                if 12 >= weeks_until(2021, 10, 23) >= 0:
-                    weekly_message()
-        if now[0] == 2021 and now[1] == 10 and now[2] == 3:
-            daylight_savings()
-        if now[0] == 2022 and now[1] == 4 and now[2] == 3:
-            daylight_savings()
-
 
 client.loop.create_task(status_change())
 client.run(os.getenv("TOKEN"))
