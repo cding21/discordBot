@@ -115,10 +115,10 @@ async def on_message(message):
             'content': "_clearqueue"
         }
         payload2 = {
-            'content': "_p https://www.youtube.com/watch?v=FfWoHZFci0g"
+            'content': "_p https://www.youtube.com/watch?v=FKEUwR2LkGU&ab_channel=WheelieBoys"
         }
         payload3 = {
-            'content': "_loop"
+            'content': "_skip"
         }
         header = {
             'authorization': os.getenv('AUTH')
