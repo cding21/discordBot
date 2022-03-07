@@ -93,7 +93,7 @@ def weeks_until(year, month, day):
 
 
 def semester_weeks():
-    week_number = 13 - weeks_until(2021, 10, 23)
+    week_number = 13 - weeks_until(2022, 5, 29)
     if 12 >= week_number >= 1:
         return "This week is **Week " + str(week_number) + "**.\nCheck the assessments page to see what due dates are " \
                                                            "coming up! "
